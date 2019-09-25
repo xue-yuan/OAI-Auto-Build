@@ -1,4 +1,5 @@
 #!/bin/bash
+# EPC Installation
 
 # 網卡名稱, IP
 echo "$1" "$2"
@@ -118,7 +119,7 @@ echo -e "\033[46;37m*** Generating Certificate ***\033[0m"
 sudo ~/openair-cn/scripts/check_hss_s6a_certificate /usr/local/etc/oai/freeDiameter hss.openair4G.eur
 sudo ~/openair-cn/scripts/check_mme_s6a_certificate /usr/local/etc/oai/freeDiameter labuser.openair4G.eur
 
-echo -e "\033[46;37m*** Setting MYSQL ***\033[0m"
+echo -e "\033[46;37m*** Configuring MYSQL ***\033[0m"
 
 mysql -u root -plinux << EOF
 CREATE database oai_db;
@@ -141,6 +142,8 @@ quit
 EOF
 
 echo -e "\033[47;36m*** Building Successful ***\nPlease Run the following scripts in separate bash.\033[0m\n"
+
+# echo -e "\033[47;36m*** Running EPC ***\033[0m\n"
 
 # sudo ~/openair-cn/scripts/run_hss &
 # sleep 1
