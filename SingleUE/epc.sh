@@ -22,9 +22,6 @@ else
     ip=$2
 fi
 
-xdg-open https://bit.ly/2kqIuJs
-
-
 echo -e "\033[46;37m*** Installing Prerequisite ***\033[0m"
 
 sudo apt update
