@@ -3,6 +3,24 @@
 # 網卡名稱, IP
 echo "$1" "$2"
 
+if [ "$1" = "" ]
+then
+    echo -e "\033[46;37m*** use default interface ***\033[0m"
+    interface="eth0"
+else
+    echo -e "\033[46;37m*** use $1 ***\033[0m"
+    interface=$1
+fi
+
+if [ "$2" = "" ]
+then
+    echo -e "\033[46;37m*** use default IP address ***\033[0m"
+    ip="10.118.126.202"
+else
+    echo -e "\033[46;37m*** use $2 ***\033[0m"
+    ip=$2
+fi
+
 xdg-open https://bit.ly/2kqIuJs
 
 
