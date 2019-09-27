@@ -31,11 +31,11 @@ sudo apt install git -y
 
 echo -e "\033[46;37m*** Modifying hosts ***\033[0m"
 
-sudo sed -i 's/127.0.1.1	labuser/127.0.1.1	labuser.openair4G.eur labuser\n127.0.1.1	hss.openair4G.eur hss/g' /etc/hosts
+sudo sed -i 's/127.0.1.1.*labuser/127.0.1.1	labuser.openair4G.eur labuser\n127.0.1.1	hss.openair4G.eur hss/g' /etc/hosts
 
 echo -e "\033[46;37m*** Cloning EPC ***\033[0m"
 
-git clone https://gitlab.eurecom.fr/oai/openair-cn.git
+git clone https://gitlab.eurecom.fr/oai/openair-cn.git ~/openair-cn
 
 echo -e "\033[46;37m*** Checkout Version ***\033[0m"
 
@@ -93,18 +93,18 @@ sudo sed -i 's/#OPERATOR_key/OPERATOR_key/g' /usr/local/etc/oai/hss.conf
 
 echo -e "\033[46;37m*** Configuring MME ***\033[0m"
 
-sudo sed -i 's/MME_INTERFACE_NAME_FOR_S1_MME         = "eth0";/MME_INTERFACE_NAME_FOR_S1_MME         = "lo";/g' /usr/local/etc/oai/mme.conf
-sudo sed -i 's/MME_IPV4_ADDRESS_FOR_S1_MME           = "192.168.11.17\/24";/MME_IPV4_ADDRESS_FOR_S1_MME           = "127.0.1.1\/8";/g' /usr/local/etc/oai/mme.conf
-sudo sed -i 's/MME_IPV4_ADDRESS_FOR_S11_MME          = "127.0.11.1\/8";/MME_IPV4_ADDRESS_FOR_S11_MME          = "127.0.3.1\/8";/g' /usr/local/etc/oai/mme.conf
-sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S11                = "127.0.11.2\/8";/SGW_IPV4_ADDRESS_FOR_S11                = "127.0.3.2\/8";/g' /usr/local/etc/oai/mme.conf
+sudo sed -i 's/MME_INTERFACE_NAME_FOR_S1_MME.*"eth0";/MME_INTERFACE_NAME_FOR_S1_MME = "lo";/g' /usr/local/etc/oai/mme.conf
+sudo sed -i 's/MME_IPV4_ADDRESS_FOR_S1_MME.*"192.168.11.17\/24";/MME_IPV4_ADDRESS_FOR_S1_MME = "127.0.1.1\/8";/g' /usr/local/etc/oai/mme.conf
+sudo sed -i 's/MME_IPV4_ADDRESS_FOR_S11_MME.*"127.0.11.1\/8";/MME_IPV4_ADDRESS_FOR_S11_MME = "127.0.3.1\/8";/g' /usr/local/etc/oai/mme.conf
+sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S11.*"127.0.11.2\/8";/SGW_IPV4_ADDRESS_FOR_S11 = "127.0.3.2\/8";/g' /usr/local/etc/oai/mme.conf
 
 echo -e "\033[46;37m*** Configuring SPGW ***\033[0m"
 
-sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S11                = "127.0.11.2\/8";/SGW_IPV4_ADDRESS_FOR_S11                = "127.0.3.2\/8";/g' /usr/local/etc/oai/spgw.conf
-sudo sed -i 's/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP    = "eth0";/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP    = "lo";/g' /usr/local/etc/oai/spgw.conf
-sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP      = "192.168.11.17\/24";/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP      = "127.0.2.1\/8";/g' /usr/local/etc/oai/spgw.conf
-sudo sed -i "s/PGW_INTERFACE_NAME_FOR_SGI            = \"eth3\";/PGW_INTERFACE_NAME_FOR_SGI            = \"$1\";/g" /usr/local/etc/oai/spgw.conf
-sudo sed -i 's/PGW_MASQUERADE_SGI                    = "no";/PGW_MASQUERADE_SGI                    = "yes";/g' /usr/local/etc/oai/spgw.conf
+sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S11.*"127.0.11.2\/8";/SGW_IPV4_ADDRESS_FOR_S11 = "127.0.3.2\/8";/g' /usr/local/etc/oai/spgw.conf
+sudo sed -i 's/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP.*"eth0";/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP = "lo";/g' /usr/local/etc/oai/spgw.conf
+sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP.*"192.168.11.17\/24";/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP = "127.0.2.1\/8";/g' /usr/local/etc/oai/spgw.conf
+sudo sed -i "s/PGW_INTERFACE_NAME_FOR_SGI.*\"eth3\";/PGW_INTERFACE_NAME_FOR_SGI = \"$1\";/g" /usr/local/etc/oai/spgw.conf
+sudo sed -i 's/PGW_MASQUERADE_SGI.*"no";/PGW_MASQUERADE_SGI = "yes";/g' /usr/local/etc/oai/spgw.conf
 sudo sed -i "s/\"172.16.0.0\/12\"/\"10.118.127.0\/24\"/g" /usr/local/etc/oai/spgw.conf
 
 echo -e "\033[46;37m*** Modifying Certificate Argument ***\033[0m"
