@@ -3,3 +3,7 @@
 ```
 ./epc [interface name] [IP address]
 ```
+
+```
+./enb [TAC] [MCC] [MNC]
+```
