@@ -2,7 +2,7 @@
 
 ## Single-UE
 
-**Available NOW!**
+> **Available NOW!**
 
 ```
 ./epc [interface name] [IP address]
