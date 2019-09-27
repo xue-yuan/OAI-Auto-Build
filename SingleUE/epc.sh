@@ -103,7 +103,7 @@ echo -e "\033[46;37m*** Configuring SPGW ***\033[0m"
 sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S11.*"127.0.11.2\/8";/SGW_IPV4_ADDRESS_FOR_S11 = "127.0.3.2\/8";/g' /usr/local/etc/oai/spgw.conf
 sudo sed -i 's/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP.*"eth0";/SGW_INTERFACE_NAME_FOR_S1U_S12_S4_UP = "lo";/g' /usr/local/etc/oai/spgw.conf
 sudo sed -i 's/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP.*"192.168.11.17\/24";/SGW_IPV4_ADDRESS_FOR_S1U_S12_S4_UP = "127.0.2.1\/8";/g' /usr/local/etc/oai/spgw.conf
-sudo sed -i "s/PGW_INTERFACE_NAME_FOR_SGI.*\"eth3\";/PGW_INTERFACE_NAME_FOR_SGI = \"$1\";/g" /usr/local/etc/oai/spgw.conf
+sudo sed -i "s/PGW_INTERFACE_NAME_FOR_SGI.*\"eth3\";/PGW_INTERFACE_NAME_FOR_SGI = \"$interface\";/g" /usr/local/etc/oai/spgw.conf
 sudo sed -i 's/PGW_MASQUERADE_SGI.*"no";/PGW_MASQUERADE_SGI = "yes";/g' /usr/local/etc/oai/spgw.conf
 sudo sed -i "s/\"172.16.0.0\/12\"/\"10.118.127.0\/24\"/g" /usr/local/etc/oai/spgw.conf
 
@@ -131,7 +131,7 @@ select * from apn;
 insert into apn values ('1', 'oai.ipv4', 'IPv4');
 
 select * from pgw;
-update pgw set ipv4="$2" where id="3";
+update pgw set ipv4="$ip" where id="3";
 
 select * from mmeidentity;
 update mmeidentity set mmehost="labuser.openair4G.eur" where idmmeidentity="1";
