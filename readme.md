@@ -11,5 +11,3 @@
 ```
 ./enb [TAC] [MCC] [MNC]
 ```
-
-## Multi-UE
